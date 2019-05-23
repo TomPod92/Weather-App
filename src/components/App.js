@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./Header.js";
+import SideButton from "./SideButton.js";
 import SidePanel from "./SidePanel.js";
 import Overlay from "./Overlay.js";
 import Form from "./Form.js"
@@ -21,7 +22,8 @@ class App extends React.Component {
     sunrise:'',
     sunset:'',
     status: false,
-    gotData: false
+    gotData: false,
+    foreCast: null
   };
 
   handleOpenSidePanel = () => {
@@ -42,7 +44,9 @@ class App extends React.Component {
     .then(response => {
       if(response.ok) {
         this.setState({
-          status:response.ok
+          status:response.ok,
+          value:'',
+          foreCast: null
         })
         return response
       } 
@@ -72,7 +76,9 @@ class App extends React.Component {
     .catch(error => {
       this.setState({
         gotData: true,
-        status: false
+        status: false,
+        city: this.state.value,
+        value:''
       })
     })
 
@@ -84,22 +90,46 @@ class App extends React.Component {
     })
   }
 
-  fun1 = () => {
-    console.log('pierwsza')
-  }
+  handleForeCast = () => {
+    console.log('handleForeCast')
+    const APIKEY = '56ba80aa326c4d258307380c4713b0b3';
 
-  fun2 = () => {
-    console.log('druga')
+    // get data from API (for 5 days)
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.state.latitude}&lon=${this.state.longitude}&APPID=${APIKEY}`)
+    //
+    .then(response => {
+      if(response.ok) return response
+    })
+    // change response to json
+    .then(response => response.json())
+    // push one foreCast from each day to an array and update the state with it
+    .then(data => {
+      const foreCast = [];
+      
+      data.list.map( (current,index) => {
+        let i = index.toString();
+
+        if(i[0]=== '4' || i[1] === '4') foreCast.push(current)
+        return undefined
+      })
+
+      this.setState({
+        foreCast:foreCast
+      })
+    })
   }
 
   render() {
     return (
-      <div style={{ height: "100%" }}>
+      <div style={{ position: "relative" }}>
         <Header handleOpenSidePanel={this.handleOpenSidePanel} />
+
+        <SideButton handleOpenSidePanel={this.handleOpenSidePanel}/>
 
         <SidePanel
           active={this.state.sidePanelOpen}
           handleOpenSidePanel={this.handleOpenSidePanel}
+          weather={this.state.foreCast}
         />
 
         <Overlay
@@ -109,9 +139,7 @@ class App extends React.Component {
 
         <Form value={this.state.value} onSubmit={this.handleFormSubmit} onChange={this.handleInputChange}/>
 
-        {this.state.gotData ? <Weather weather={this.state} fun1={this.fun1} fun2={this.fun2}/> : <div>Wyszukaj miasto</div>}
-        
-        
+        {this.state.gotData ? <Weather weather={this.state} handleForeCast={this.handleForeCast}/> : <div className="info">Wyszukaj miasto</div>}
       </div>
     );
   }

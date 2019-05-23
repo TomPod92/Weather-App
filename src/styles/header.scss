@@ -1,24 +1,13 @@
 .header {
   display: flex;
+  position: relative;
+  justify-content: center;
   align-items: center;
   width: 100%;
   background-color: var(--color-primary-blue);
   padding: 1rem;
-
-  &--button {
-    width: 4rem;
-    height: 4rem;
-    margin-left: 3rem;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.5s;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-
+  height: 9rem;
+  
   &--logo {
     padding: 0.5rem 1rem;
     border: 2px solid var(--color-off-white);
@@ -32,9 +21,5 @@
     font-size: 3rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-  }
-
-  &--spacer {
-    flex: 1;
   }
 }

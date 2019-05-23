@@ -1,0 +1,41 @@
+.weather {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem;
+
+  &__title {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &__title:after,
+  &--basic:after {
+    content: "";
+      display: block;
+      margin: 2rem auto;
+      height: 2px;
+      width: 75%;
+      background-color: #c5c5c5;
+  }
+
+  &--additional {
+    margin-bottom: 4rem;
+  }
+
+  &__item {
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+  }
+}
+
+.info {
+  margin-top: 12rem;
+  font-size: 4rem;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 2px;
+  color: #c5c5c5;
+}

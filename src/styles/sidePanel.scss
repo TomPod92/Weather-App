@@ -1,4 +1,9 @@
 .sidePanel {
+  display: flex; //tst
+  flex-direction: column; //test
+  // justify-content: space-between; //test
+  align-items: center; //test
+  overflow-y: scroll;
   position: fixed;
   top: 0;
   left: 0;
@@ -7,14 +12,14 @@
   background-color: var(--color-off-white);
   box-shadow: 1rem 0 5rem rgba(0, 0, 0, 0.5);
   z-index: 200;
-  transform: translate(-110%);
-  transition: transform 0.5s;
+  transform: translate(-120%);
+  transition: transform 0.7s;
 
   &--active {
-    transform: translateX(0)
+    transform: translateX(0);
   }
 
-  &--button{
+  &--button {
     position: absolute;
     top: 2rem;
     right: 4rem;
@@ -25,5 +30,19 @@
     &:hover {
       transform: scale(1.1);
     }
+  }
+}
+
+.foreCast {
+  margin: 2rem 0;
+  border-radius: 5px;
+  padding: 2rem;
+  background-color: var(--color-primary-blue);
+  color: white;
+  box-shadow: 0 1rem 2rem rgba(75, 75, 75, 0.5);
+
+  div {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
   }
 }
