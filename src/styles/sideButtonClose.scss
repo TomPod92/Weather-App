@@ -1,0 +1,16 @@
+.buttonClose {
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  z-index: 200;
+  height: 5rem;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background-color: var(--color-primary-blue);
+  transform: translate(-120%);
+  transition: all 1s;
+
+  &--active {
+    transform: translate(0);
+  }
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header.js";
 import SideButton from "./SideButton.js";
+// import SideButtonClose from "./SideButtonClose.js";
 import SidePanel from "./SidePanel.js";
 import Overlay from "./Overlay.js";
 import Form from "./Form.js"
@@ -26,7 +27,10 @@ class App extends React.Component {
     foreCast: null
   };
 
-  handleOpenSidePanel = () => {
+  handleOpenSidePanel = (e) => {
+
+    if(e) e.stopPropagation();
+    // e.stopPropagation()
     this.setState(prevState => ({
       sidePanelOpen: !prevState.sidePanelOpen
     }));
@@ -45,7 +49,6 @@ class App extends React.Component {
       if(response.ok) {
         this.setState({
           status:response.ok,
-          value:'',
           foreCast: null
         })
         return response
@@ -69,7 +72,8 @@ class App extends React.Component {
           wind: data.wind.speed,
           sunrise: data.sys.sunrise,
           sunset: data.sys.sunset,
-          gotData: true
+          gotData: true,
+          value:''
       }))
     })
     // if something went wrong
@@ -78,7 +82,8 @@ class App extends React.Component {
         gotData: true,
         status: false,
         city: this.state.value,
-        value:''
+        value:'',
+        foreCast: null
       })
     })
 
@@ -91,11 +96,10 @@ class App extends React.Component {
   }
 
   handleForeCast = () => {
-    console.log('handleForeCast')
     const APIKEY = '56ba80aa326c4d258307380c4713b0b3';
 
     // get data from API (for 5 days)
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.state.latitude}&lon=${this.state.longitude}&APPID=${APIKEY}`)
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.state.latitude}&lon=${this.state.longitude}&APPID=${APIKEY}&units=metric`)
     //
     .then(response => {
       if(response.ok) return response
@@ -116,12 +120,14 @@ class App extends React.Component {
       this.setState({
         foreCast:foreCast
       })
+
+      this.handleOpenSidePanel();
     })
   }
 
   render() {
     return (
-      <div style={{ position: "relative" }}>
+      <div style={{ position: "relative", height: "100%" }}>
         <Header handleOpenSidePanel={this.handleOpenSidePanel} />
 
         <SideButton handleOpenSidePanel={this.handleOpenSidePanel}/>

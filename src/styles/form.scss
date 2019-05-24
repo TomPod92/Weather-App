@@ -1,5 +1,6 @@
 .form {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   height: 10rem;
@@ -41,5 +42,17 @@
       background-color: white;
       color: var(--color-primary-blue);
     }
+  }
+}
+
+@media (max-width: 359px) {
+  .form {
+    height: auto;
+    padding: 2rem 0;
+    flex-direction: column;
+  }
+  .form__input {
+    margin-right: 0;
+    margin-bottom: 2rem;
   }
 }
