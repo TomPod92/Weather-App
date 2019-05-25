@@ -30,7 +30,6 @@ class App extends React.Component {
   handleOpenSidePanel = (e) => {
 
     if(e) e.stopPropagation();
-    // e.stopPropagation()
     this.setState(prevState => ({
       sidePanelOpen: !prevState.sidePanelOpen
     }));
@@ -43,7 +42,7 @@ class App extends React.Component {
     event.preventDefault();
 
     // get data from OPENWEATHERMAP api
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.value}&APPID=${APIKEY}&units=metric`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.state.value}&APPID=${APIKEY}&units=metric`)
     // if everything went ok set "status" to true
     .then(response => {
       if(response.ok) {
