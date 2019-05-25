@@ -1,6 +1,5 @@
 import React from 'react';
 import '../styles/weather.scss'
-
 import iconSet from '../selection.json'
 import IcomoonReact from 'icomoon-react'
 
@@ -19,23 +18,32 @@ const Weather = (props) => {
                     <IcomoonReact iconSet={iconSet} color="#2f84ea" size={'2rem'} icon="thermometer" className="iconInline"/>
                     Średnia temperatura: {Math.round(temp)}&#176;C
                 </div>
+
                 <div className="weather__item">
                     <IcomoonReact iconSet={iconSet} color="#2f84ea" size={'2rem'} icon="download2" className="iconInline"/>
                     Ciśnienie: {pressure}hPa
-                    </div>
+                </div>
+
                 <div className="weather__item">
                     <IcomoonReact iconSet={iconSet} color="#2f84ea" size={'2rem'} icon="droplet" className="iconInline"/>
                     Wilgotność: {humidity}%
-                    </div>
+                </div>
+
                 <div className="weather__item">
                     <IcomoonReact iconSet={iconSet} color="#2f84ea" size={'2rem'} icon="wind" className="iconInline"/>
                     Prędkośc wiatru: {wind}m/s
-                    </div>
+                </div>
             </div>
 
             <div className="weather--additional">
-                <div className="weather__item">Temperatura minimalna: {Math.round(temp_min)}&#176;C</div>
-                <div className="weather__item">Temperatura maksymalna: {Math.round(temp_max)}&#176;C</div>
+                <div className="weather__item">
+                    <IcomoonReact iconSet={iconSet} color="#2f84ea" size={'2rem'} icon="plus" className="iconInline"/>
+                    Temperatura minimalna: {Math.round(temp_min)}&#176;C
+                    </div>
+                <div className="weather__item">
+                    <IcomoonReact iconSet={iconSet} color="#2f84ea" size={'2rem'} icon="minus" className="iconInline"/>
+                    Temperatura maksymalna: {Math.round(temp_max)}&#176;C
+                    </div>
                 <div className="weather__item">
                     <IcomoonReact iconSet={iconSet} color="#2f84ea" size={'2rem'} icon="sun" className="iconInline"/>
                     Wschód słonca: {sunriseHour}

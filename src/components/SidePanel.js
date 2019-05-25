@@ -15,15 +15,15 @@ const SidePanel = props => {
           Temperatura: {Math.round(current.main.temp)}&#176;C
         </div>
         <div>
-          <IcomoonReact iconSet={iconSet} color="#000" size={'2rem'} icon="download2" className="iconInline"/>
+          <IcomoonReact iconSet={iconSet} color="#fff" size={'2rem'} icon="download2" className="iconInline"/>
           Ciśnienie: {current.main.pressure}hPa
           </div>
         <div>
-          <IcomoonReact iconSet={iconSet} color="#000" size={'2rem'} icon="droplet" className="iconInline--bigMargin"/>
+          <IcomoonReact iconSet={iconSet} color="#fff" size={'2rem'} icon="droplet" className="iconInline"/>
           Wilgotność: {current.main.humidity}%
           </div>
         <div>
-          <IcomoonReact iconSet={iconSet} color="#000" size={'2rem'} icon="wind" className="iconInline"/>
+          <IcomoonReact iconSet={iconSet} color="#fff" size={'2rem'} icon="wind" className="iconInline"/>
           Prędkość wiatru: {current.wind.speed}m/s
           </div>
       </div>

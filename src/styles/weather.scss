@@ -1,9 +1,7 @@
 .weather {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  align-content: center;
+  align-items: center;
   padding: 4rem;
 
   &__title {
@@ -11,6 +9,8 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #414141;
+    width: 40rem;
+    text-align: center;
   }
 
   &__title:after,
@@ -20,20 +20,23 @@
     margin: 2rem auto;
     box-shadow: 0 0 0.1rem rgba(47, 131, 234, 0.9);
     height: 1px;
-    width: 75%;
     background-color: rgba(47, 131, 234, 0.884);
   }
 
+  &--basic {
+    width: 40rem;
+  }
+
   &--additional {
+    width: 40rem;
     margin-bottom: 4rem;
   }
 
   &__item {
     padding: 1rem 2rem;
     font-size: 1.5rem;
-    display: flex; //test
-    align-items: center; //test
-    // justify-content: center;
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -46,8 +49,14 @@
   color: #c5c5c5;
 }
 
-//test
-
 .iconInline {
   margin-right: 2.5rem;
+}
+
+@media (max-width: 450px) {
+  .weather__title,
+  .weather--basic,
+  .weather--additional {
+    width: 80vw;
+  }
 }
